@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Lazare&#39;s AWS Blog</title>
-    <link>https://example.org/posts/</link>
-    <description>Recent content in Posts on Lazare&#39;s AWS Blog</description>
+    <title>S3 on Lazare&#39;s AWS Blog</title>
+    <link>https://example.org/tags/s3/</link>
+    <description>Recent content in S3 on Lazare&#39;s AWS Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Apr 2026 00:00:00 -0700</lastBuildDate>
-    <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/s3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Deploy a Hugo Static Site with S3, CloudFront, and Route 53</title>
       <link>https://example.org/posts/deploy-hugo-s3-cloudfront-route53/</link>
       <pubDate>Wed, 15 Apr 2026 00:00:00 -0700</pubDate>
       <guid>https://example.org/posts/deploy-hugo-s3-cloudfront-route53/</guid>
       <description>&lt;p&gt;Deploying a Hugo static site on AWS gives you a fast, scalable, and cost-effective setup. In this guide, we&amp;rsquo;ll walk through hosting your site on &lt;strong&gt;Amazon S3&lt;/strong&gt;, distributing it globally via &lt;strong&gt;CloudFront&lt;/strong&gt;, and pointing a custom domain using &lt;strong&gt;Route 53&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;&#xA;&lt;p&gt;Before starting, make sure you have:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A built Hugo site (&lt;code&gt;hugo&lt;/code&gt; command generates the &lt;code&gt;public/&lt;/code&gt; folder)&lt;/li&gt;&#xA;&lt;li&gt;An AWS account with appropriate IAM permissions&lt;/li&gt;&#xA;&lt;li&gt;A domain name registered in Route 53 (or transferred there)&lt;/li&gt;&#xA;&lt;li&gt;The &lt;a href=&#34;https://aws.amazon.com/cli/&#34;&gt;AWS CLI&lt;/a&gt; installed and configured&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;step-1-build-your-hugo-site&#34;&gt;Step 1: Build Your Hugo Site&lt;/h2&gt;&#xA;&lt;p&gt;Run the Hugo build command to generate your static files:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>How to Switch GitHub-AWS Integrations from Hard-Coded Tokens to OIDC</title>
-      <link>https://example.org/posts/switch-github-aws-hard-coded-tokens-to-oidc/</link>
-      <pubDate>Wed, 15 Apr 2026 00:00:00 -0700</pubDate>
-      <guid>https://example.org/posts/switch-github-aws-hard-coded-tokens-to-oidc/</guid>
-      <description>&lt;p&gt;If your GitHub Actions workflow talks to AWS using &lt;code&gt;AWS_ACCESS_KEY_ID&lt;/code&gt; and &lt;code&gt;AWS_SECRET_ACCESS_KEY&lt;/code&gt;, you are relying on long-lived credentials stored in GitHub secrets. That works, but it creates more secret management overhead than you need. A better approach is to use &lt;strong&gt;OpenID Connect (OIDC)&lt;/strong&gt; so GitHub can request short-lived AWS credentials at runtime.&lt;/p&gt;&#xA;&lt;p&gt;In this guide, I&amp;rsquo;ll walk through how to migrate a typical GitHub-to-AWS deployment from hard-coded tokens to OIDC. The pattern is especially useful for static site deployments, where GitHub Actions builds the site, uploads it to &lt;strong&gt;Amazon S3&lt;/strong&gt;, and then invalidates &lt;strong&gt;CloudFront&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

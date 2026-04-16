@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>How to Deploy a Hugo Static Site with S3, CloudFront, and Route 53 | Lazare&#39;s AWS Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Deploying a Hugo static site on AWS gives you a fast, scalable, and cost-effective setup. In this guide, we&rsquo;ll walk through hosting your site on Amazon S3, distributing it globally via CloudFront, and pointing a custom domain using Route 53.
+Prerequisites
+Before starting, make sure you have:
+
+A built Hugo site (hugo command generates the public/ folder)
+An AWS account with appropriate IAM permissions
+A domain name registered in Route 53 (or transferred there)
+The AWS CLI installed and configured
+
+
+Step 1: Build Your Hugo Site
+Run the Hugo build command to generate your static files:">
+    <meta name="generator" content="Hugo 0.160.1">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/deploy-hugo-s3-cloudfront-route53/">
+    
+
+    
+    
+    <meta property="og:url" content="https://example.org/posts/deploy-hugo-s3-cloudfront-route53/">
+  <meta property="og:site_name" content="Lazare&#39;s AWS Blog">
+  <meta property="og:title" content="How to Deploy a Hugo Static Site with S3, CloudFront, and Route 53">
+  <meta property="og:description" content="Deploying a Hugo static site on AWS gives you a fast, scalable, and cost-effective setup. In this guide, we’ll walk through hosting your site on Amazon S3, distributing it globally via CloudFront, and pointing a custom domain using Route 53.
+Prerequisites Before starting, make sure you have:
+A built Hugo site (hugo command generates the public/ folder) An AWS account with appropriate IAM permissions A domain name registered in Route 53 (or transferred there) The AWS CLI installed and configured Step 1: Build Your Hugo Site Run the Hugo build command to generate your static files:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-15T00:00:00-07:00">
+    <meta property="article:modified_time" content="2026-04-15T00:00:00-07:00">
+    <meta property="article:tag" content="Hugo">
+    <meta property="article:tag" content="Aws">
+    <meta property="article:tag" content="S3">
+    <meta property="article:tag" content="Cloudfront">
+    <meta property="article:tag" content="Route53">
+    <meta property="article:tag" content="Devops">
+
+  <meta itemprop="name" content="How to Deploy a Hugo Static Site with S3, CloudFront, and Route 53">
+  <meta itemprop="description" content="Deploying a Hugo static site on AWS gives you a fast, scalable, and cost-effective setup. In this guide, we’ll walk through hosting your site on Amazon S3, distributing it globally via CloudFront, and pointing a custom domain using Route 53.
+Prerequisites Before starting, make sure you have:
+A built Hugo site (hugo command generates the public/ folder) An AWS account with appropriate IAM permissions A domain name registered in Route 53 (or transferred there) The AWS CLI installed and configured Step 1: Build Your Hugo Site Run the Hugo build command to generate your static files:">
+  <meta itemprop="datePublished" content="2026-04-15T00:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-04-15T00:00:00-07:00">
+  <meta itemprop="wordCount" content="914">
+  <meta itemprop="keywords" content="Hugo,Aws,S3,Cloudfront,Route53,Devops">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How to Deploy a Hugo Static Site with S3, CloudFront, and Route 53">
+  <meta name="twitter:description" content="Deploying a Hugo static site on AWS gives you a fast, scalable, and cost-effective setup. In this guide, we’ll walk through hosting your site on Amazon S3, distributing it globally via CloudFront, and pointing a custom domain using Route 53.
+Prerequisites Before starting, make sure you have:
+A built Hugo site (hugo command generates the public/ folder) An AWS account with appropriate IAM permissions A domain name registered in Route 53 (or transferred there) The AWS CLI installed and configured Step 1: Build Your Hugo Site Run the Hugo build command to generate your static files:">
+
+      
+      
+    
+	
+  </head><body class="ma0 avenir bg-near-white production is-page is-page page-deploy-hugo-s3-cloudfront-route53">
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Lazare&#39;s AWS Blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+
+  <article class="page-deploy-hugo-s3-cloudfront-route53 flex-l mw7 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">How to Deploy a Hugo Static Site with S3, CloudFront, and Route 53</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2026-04-15T00:00:00-07:00">April 15, 2026</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><p>Deploying a Hugo static site on AWS gives you a fast, scalable, and cost-effective setup. In this guide, we&rsquo;ll walk through hosting your site on <strong>Amazon S3</strong>, distributing it globally via <strong>CloudFront</strong>, and pointing a custom domain using <strong>Route 53</strong>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before starting, make sure you have:</p>
+<ul>
+<li>A built Hugo site (<code>hugo</code> command generates the <code>public/</code> folder)</li>
+<li>An AWS account with appropriate IAM permissions</li>
+<li>A domain name registered in Route 53 (or transferred there)</li>
+<li>The <a href="https://aws.amazon.com/cli/">AWS CLI</a> installed and configured</li>
+</ul>
+<hr>
+<h2 id="step-1-build-your-hugo-site">Step 1: Build Your Hugo Site</h2>
+<p>Run the Hugo build command to generate your static files:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo --minify
+</span></span></code></pre></div><p>This outputs your site into the <code>public/</code> directory.</p>
+<hr>
+<h2 id="step-2-create-and-configure-an-s3-bucket">Step 2: Create and Configure an S3 Bucket</h2>
+<h3 id="create-the-bucket">Create the bucket</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 mb s3://your-domain.com --region us-east-1
+</span></span></code></pre></div><blockquote>
+<p><strong>Note:</strong> For CloudFront to serve your site correctly, the bucket does <strong>not</strong> need to be configured for static website hosting. We&rsquo;ll use CloudFront as the entry point and keep the bucket private.</p>
+</blockquote>
+<h3 id="block-all-public-access">Block all public access</h3>
+<p>Keep the bucket private — CloudFront will access it via an Origin Access Control (OAC):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3api put-public-access-block <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --bucket your-domain.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --public-access-block-configuration <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true&#34;</span>
+</span></span></code></pre></div><h3 id="upload-your-site">Upload your site</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3 sync public/ s3://your-domain.com --delete
+</span></span></code></pre></div><p>The <code>--delete</code> flag removes files from S3 that no longer exist locally, keeping your bucket in sync.</p>
+<hr>
+<h2 id="step-3-request-an-ssl-certificate-via-acm">Step 3: Request an SSL Certificate via ACM</h2>
+<p>CloudFront requires a certificate in the <strong>us-east-1</strong> region.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws acm request-certificate <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --domain-name your-domain.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --subject-alternative-names <span style="color:#e6db74">&#34;*.your-domain.com&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --validation-method DNS <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --region us-east-1
+</span></span></code></pre></div><p>After requesting, go to the <strong>AWS Certificate Manager</strong> console, find your certificate, and add the DNS validation CNAME records to Route 53. ACM can do this automatically if your domain is in Route 53 — click <strong>&ldquo;Create records in Route 53&rdquo;</strong> in the console.</p>
+<p>Wait a few minutes for the certificate status to show <strong>Issued</strong>.</p>
+<hr>
+<h2 id="step-4-create-a-cloudfront-distribution">Step 4: Create a CloudFront Distribution</h2>
+<h3 id="create-an-origin-access-control-oac">Create an Origin Access Control (OAC)</h3>
+<p>OAC is the modern, recommended way for CloudFront to securely access a private S3 bucket.</p>
+<p>In the <strong>AWS Console → CloudFront → Origin access → Create control setting</strong>:</p>
+<ul>
+<li><strong>Name:</strong> <code>your-domain-oac</code></li>
+<li><strong>Origin type:</strong> S3</li>
+<li><strong>Signing behavior:</strong> Sign requests</li>
+</ul>
+<p>Or via CLI:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws cloudfront create-origin-access-control <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --origin-access-control-config <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;Name&#34;: &#34;your-domain-oac&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;Description&#34;: &#34;OAC for your-domain.com&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;SigningProtocol&#34;: &#34;sigv4&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;SigningBehavior&#34;: &#34;always&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;OriginAccessControlOriginType&#34;: &#34;s3&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><p>Note the returned <code>Id</code> — you&rsquo;ll need it when creating the distribution.</p>
+<h3 id="create-the-distribution">Create the distribution</h3>
+<p>In the <strong>CloudFront Console</strong>, create a new distribution with these key settings:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Setting</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Origin domain</strong></td>
+          <td>Your S3 bucket&rsquo;s regional domain (e.g., <code>your-domain.com.s3.us-east-1.amazonaws.com</code>)</td>
+      </tr>
+      <tr>
+          <td><strong>Origin access</strong></td>
+          <td>Origin access control settings (OAC) — select the OAC you created</td>
+      </tr>
+      <tr>
+          <td><strong>Viewer protocol policy</strong></td>
+          <td>Redirect HTTP to HTTPS</td>
+      </tr>
+      <tr>
+          <td><strong>Allowed HTTP methods</strong></td>
+          <td>GET, HEAD</td>
+      </tr>
+      <tr>
+          <td><strong>Alternate domain names (CNAMEs)</strong></td>
+          <td><code>your-domain.com</code>, <code>www.your-domain.com</code></td>
+      </tr>
+      <tr>
+          <td><strong>Custom SSL certificate</strong></td>
+          <td>Select the ACM certificate you created</td>
+      </tr>
+      <tr>
+          <td><strong>Default root object</strong></td>
+          <td><code>index.html</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="update-the-s3-bucket-policy">Update the S3 bucket policy</h3>
+<p>After creating the distribution, CloudFront will prompt you to copy a bucket policy. It looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;AllowCloudFrontServicePrincipal&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Principal&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;Service&#34;</span>: <span style="color:#e6db74">&#34;cloudfront.amazonaws.com&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:GetObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:s3:::your-domain.com/*&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Condition&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;StringEquals&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;AWS:SourceArn&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:cloudfront::YOUR_ACCOUNT_ID:distribution/YOUR_DISTRIBUTION_ID&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Apply it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws s3api put-bucket-policy <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --bucket your-domain.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --policy file://bucket-policy.json
+</span></span></code></pre></div><hr>
+<h2 id="step-5-configure-route-53">Step 5: Configure Route 53</h2>
+<h3 id="create-an-a-record-alias-for-your-domain">Create an A record (Alias) for your domain</h3>
+<ol>
+<li>Open <strong>Route 53 → Hosted Zones</strong> and select your domain.</li>
+<li>Click <strong>Create record</strong>.</li>
+<li>Set the following:</li>
+</ol>
+<table>
+  <thead>
+      <tr>
+          <th>Field</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Record name</strong></td>
+          <td><em>(leave blank for root domain)</em></td>
+      </tr>
+      <tr>
+          <td><strong>Record type</strong></td>
+          <td>A</td>
+      </tr>
+      <tr>
+          <td><strong>Alias</strong></td>
+          <td>Yes</td>
+      </tr>
+      <tr>
+          <td><strong>Route traffic to</strong></td>
+          <td>Alias to CloudFront distribution</td>
+      </tr>
+      <tr>
+          <td><strong>Distribution</strong></td>
+          <td>Select your CloudFront distribution</td>
+      </tr>
+  </tbody>
+</table>
+<ol start="4">
+<li>Repeat for <code>www</code> by setting <strong>Record name</strong> to <code>www</code>.</li>
+</ol>
+<p>It typically takes a few minutes for DNS to propagate.</p>
+<hr>
+<h2 id="step-6-handle-hugos-clean-urls-optional-but-recommended">Step 6: Handle Hugo&rsquo;s Clean URLs (Optional but Recommended)</h2>
+<p>Hugo generates pages like <code>/about/index.html</code>. By default, CloudFront won&rsquo;t serve these if you navigate to <code>/about/</code>. You can fix this with a <strong>CloudFront Function</strong>.</p>
+<p>In the <strong>CloudFront Console → Functions → Create function</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handler</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">request</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">uri</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">uri</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// If URI ends with &#39;/&#39;, append &#39;index.html&#39;
+</span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">uri</span>.<span style="color:#a6e22e">endsWith</span>(<span style="color:#e6db74">&#39;/&#39;</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">uri</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;index.html&#39;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// If URI has no file extension, append &#39;/index.html&#39;
+</span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">uri</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#39;.&#39;</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">uri</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;/index.html&#39;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">request</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Associate this function with your CloudFront distribution under <strong>Viewer request</strong> for the default cache behavior.</p>
+<hr>
+<h2 id="step-7-automate-deployments-optional">Step 7: Automate Deployments (Optional)</h2>
+<p>Manually syncing files works, but automating with a simple script or CI/CD pipeline is better. Here&rsquo;s a minimal deploy script:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span>set -e
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>BUCKET<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-domain.com&#34;</span>
+</span></span><span style="display:flex;"><span>DISTRIBUTION_ID<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;YOUR_CLOUDFRONT_DISTRIBUTION_ID&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Building Hugo site...&#34;</span>
+</span></span><span style="display:flex;"><span>hugo --minify
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Syncing to S3...&#34;</span>
+</span></span><span style="display:flex;"><span>aws s3 sync public/ s3://$BUCKET --delete
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Invalidating CloudFront cache...&#34;</span>
+</span></span><span style="display:flex;"><span>aws cloudfront create-invalidation <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --distribution-id $DISTRIBUTION_ID <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --paths <span style="color:#e6db74">&#34;/*&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Deployment complete!&#34;</span>
+</span></span></code></pre></div><p>The CloudFront invalidation ensures visitors always get the latest version of your content.</p>
+<hr>
+<h2 id="summary">Summary</h2>
+<p>Here&rsquo;s a quick recap of what we set up:</p>
+<ul>
+<li><strong>S3</strong> stores your static Hugo files, kept private</li>
+<li><strong>CloudFront</strong> serves your content globally over HTTPS using an OAC to securely access S3</li>
+<li><strong>ACM</strong> provides the free SSL/TLS certificate for your custom domain</li>
+<li><strong>Route 53</strong> routes your custom domain to the CloudFront distribution via Alias records</li>
+</ul>
+<p>This architecture is highly reliable, globally fast, and extremely cost-effective for static sites — you only pay for storage and bandwidth, with no servers to manage.</p>
+<hr>
+<p><em>A note on how this post came together: this guide was written with the help of <a href="https://claude.ai">Claude AI</a>. Throughout the process of setting this up myself, I leaned heavily on AI tools to troubleshoot each stage, research AWS services, and make sense of the documentation. If you&rsquo;re working through a similar setup, I&rsquo;d highly recommend doing the same — it makes navigating the AWS ecosystem a lot less painful.</em></p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/hugo/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Hugo</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/aws/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Aws</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/s3/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">S3</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/cloudfront/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Cloudfront</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/route53/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Route53</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/devops/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Devops</a>
+   </li>
+  
+</ul>
+
+      
+    </div></article>
+
+    </main>
+    
+
+  </body>
+</html>

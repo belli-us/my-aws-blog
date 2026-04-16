@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>My New Hugo Project</title>
+    <title>Lazare&#39;s AWS Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.160.1">
@@ -31,8 +31,8 @@
 
     
     
-      <link href="/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Project" />
-      <link href="/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Project" />
+      <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Lazare&#39;s AWS Blog" />
+      <link href="/index.xml" rel="feed" type="application/rss+xml" title="Lazare&#39;s AWS Blog" />
       
     
 
@@ -43,16 +43,16 @@
     
     
     <meta property="og:url" content="https://example.org/">
-  <meta property="og:site_name" content="My New Hugo Project">
-  <meta property="og:title" content="My New Hugo Project">
+  <meta property="og:site_name" content="Lazare&#39;s AWS Blog">
+  <meta property="og:title" content="Lazare&#39;s AWS Blog">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
-  <meta itemprop="name" content="My New Hugo Project">
-  <meta itemprop="datePublished" content="2026-04-14T22:52:40-07:00">
-  <meta itemprop="dateModified" content="2026-04-14T22:52:40-07:00">
+  <meta itemprop="name" content="Lazare&#39;s AWS Blog">
+  <meta itemprop="datePublished" content="2026-04-15T00:00:00-07:00">
+  <meta itemprop="dateModified" content="2026-04-15T00:00:00-07:00">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="My New Hugo Project">
+  <meta name="twitter:title" content="Lazare&#39;s AWS Blog">
 
       
       
@@ -67,7 +67,7 @@
   <div class="flex-l center items-center justify-between">
     <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
-        My New Hugo Project
+        Lazare&#39;s AWS Blog
       
     </a>
     <div class="flex-l items-center">
@@ -82,7 +82,7 @@
 
       <div class="tc-l pv3 ph3 ph4-ns">
         <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          My New Hugo Project
+          Lazare&#39;s AWS Blog
         </h1>
         
       </div>
@@ -116,14 +116,49 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/posts/my-first-post/" class="color-inherit dim link">
-            My First Post
+          <a href="/posts/deploy-hugo-s3-cloudfront-route53/" class="color-inherit dim link">
+            How to Deploy a Hugo Static Site with S3, CloudFront, and Route 53
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          
+          <p>Deploying a Hugo static site on AWS gives you a fast, scalable, and cost-effective setup. In this guide, we&rsquo;ll walk through hosting your site on <strong>Amazon S3</strong>, distributing it globally via <strong>CloudFront</strong>, and pointing a custom domain using <strong>Route 53</strong>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before starting, make sure you have:</p>
+<ul>
+<li>A built Hugo site (<code>hugo</code> command generates the <code>public/</code> folder)</li>
+<li>An AWS account with appropriate IAM permissions</li>
+<li>A domain name registered in Route 53 (or transferred there)</li>
+<li>The <a href="https://aws.amazon.com/cli/">AWS CLI</a> installed and configured</li>
+</ul>
+<hr>
+<h2 id="step-1-build-your-hugo-site">Step 1: Build Your Hugo Site</h2>
+<p>Run the Hugo build command to generate your static files:</p>
         </div>
-        <a href="/posts/my-first-post/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        <a href="/posts/deploy-hugo-s3-cloudfront-route53/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="w-100 mb4 relative">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l dark-gray no-underline">
+    <div class="flex-column flex-row-ns flex">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/switch-github-aws-hard-coded-tokens-to-oidc/" class="color-inherit dim link">
+            How to Switch GitHub-AWS Integrations from Hard-Coded Tokens to OIDC
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <p>If your GitHub Actions workflow talks to AWS using <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code>, you are relying on long-lived credentials stored in GitHub secrets. That works, but it creates more secret management overhead than you need. A better approach is to use <strong>OpenID Connect (OIDC)</strong> so GitHub can request short-lived AWS credentials at runtime.</p>
+<p>In this guide, I&rsquo;ll walk through how to migrate a typical GitHub-to-AWS deployment from hard-coded tokens to OIDC. The pattern is especially useful for static site deployments, where GitHub Actions builds the site, uploads it to <strong>Amazon S3</strong>, and then invalidates <strong>CloudFront</strong>.</p>
+        </div>
+        <a href="/posts/switch-github-aws-hard-coded-tokens-to-oidc/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
       </div>
     </div>
   </div>
@@ -139,15 +174,7 @@
   
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://example.org/" >
-    &copy;  My New Hugo Project 2026 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
-  </div>
-</footer>
+    
 
   </body>
 </html>

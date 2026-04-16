@@ -2,17 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://example.org/posts/my-first-post/</loc>
-    <lastmod>2026-04-14T22:52:40-07:00</lastmod>
+    <loc>https://example.org/tags/aws/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/cloudfront/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/devops/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/github-actions/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/posts/deploy-hugo-s3-cloudfront-route53/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/posts/switch-github-aws-hard-coded-tokens-to-oidc/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/hugo/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/iam/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
   </url><url>
     <loc>https://example.org/</loc>
-    <lastmod>2026-04-14T22:52:40-07:00</lastmod>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/oidc/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
   </url><url>
     <loc>https://example.org/posts/</loc>
-    <lastmod>2026-04-14T22:52:40-07:00</lastmod>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
   </url><url>
-    <loc>https://example.org/categories/</loc>
+    <loc>https://example.org/tags/route53/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/s3/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/security/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
   </url><url>
     <loc>https://example.org/tags/</loc>
+    <lastmod>2026-04-15T00:00:00-07:00</lastmod>
+  </url><url>
+    <loc>https://example.org/categories/</loc>
   </url>
 </urlset>
