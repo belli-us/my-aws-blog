@@ -1,0 +1,45 @@
+name: Deploy Hugo Site to AWS
+
+# This tells GitHub to run the pipeline every time you push to the 'main' branch
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Grab your code from GitHub
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: true  # CRITICAL: This ensures your Hugo theme is downloaded
+          fetch-depth: 0    
+
+      # 2. Install Hugo on the GitHub server
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      # 3. Build the static HTML files
+      - name: Build Hugo Site
+        run: hugo --minify
+
+      # 4. Log into AWS using your secrets
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1 # Change if your bucket is in another region
+
+      # 5. Upload the files to your S3 bucket
+      - name: Deploy to S3
+        run: aws s3 sync public/ s3://lazares-hugo-blog-bucket-2026 --delete
+
+      # 6. Clear the CloudFront cache so the new post shows up instantly
+      - name: Invalidate CloudFront
+        run: aws cloudfront create-invalidation --distribution-id E4EUP3S7895OL --paths "/*"
