@@ -6,6 +6,11 @@ on:
     branches:
       - main  
 
+  # CRITICAL: This permissions block is required for OIDC
+permissions:
+  id-token: write   # Allows GitHub to request the OIDC JWT token
+  contents: read    # Allows GitHub to read your repository code
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -28,13 +33,12 @@ jobs:
       - name: Build Hugo Site
         run: hugo --minify
 
-      # 4. Log into AWS using your secrets
+      # UPDATED: Assume the IAM Role using OIDC instead of Secrets
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1 # Change if your bucket is in another region
+          role-to-assume: arn:aws:iam::304119515519:role/GitHubActions-HugoDeployRole
+          aws-region: us-east-1
 
       # 5. Upload the files to your S3 bucket
       - name: Deploy to S3
